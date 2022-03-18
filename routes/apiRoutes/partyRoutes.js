@@ -38,9 +38,8 @@ router.get('/party/:id', (req, res) => {
 // Delete a party
 router.delete('/party/:id', (req, res) => {
   const sql = `DELETE FROM parties WHERE id = ?`;
-  const params = [req.params.id];
 
-  db.query(sql, params, (err, result) => {
+  db.query(sql, req.params.id, (err, result) => {
     if (err) {
       res.status(400).json({ error: res.message });
     } else if (!result.affectedRows) {
